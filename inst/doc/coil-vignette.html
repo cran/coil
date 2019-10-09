@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>Abstract</title>
+
+<script type="text/javascript">
+window.onload = function() {
+  var imgs = document.getElementsByTagName('img'), i, img;
+  for (i = 0; i < imgs.length; i++) {
+    img = imgs[i];
+    // center an image if it is the only element of its parent
+    if (img.parentElement.childElementCount === 1)
+      img.parentElement.style.textAlign = 'center';
+  }
+};
+</script>
+
+<!-- Styles for R syntax highlighter -->
+<style type="text/css">
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
+
+   pre .literal {
+     color: #990073
+   }
+
+   pre .number {
+     color: #099;
+   }
+
+   pre .comment {
+     color: #998;
+     font-style: italic
+   }
+
+   pre .keyword {
+     color: #900;
+     font-weight: bold
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: #d14;
+   }
+</style>
+
+<!-- R syntax highlighter -->
+<script type="text/javascript">
+var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
+hljs.initHighlightingOnLoad();
+</script>
+
+
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 13px;
+}
+
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  line-height: 20px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 {
+   font-size:2.2em;
+}
+
+h2 {
+   font-size:1.8em;
+}
+
+h3 {
+   font-size:1.4em;
+}
+
+h4 {
+   font-size:1.0em;
+}
+
+h5 {
+   font-size:0.9em;
+}
+
+h6 {
+   font-size:0.8em;
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre, img {
+  max-width: 100%;
+}
+pre {
+  overflow-x: auto;
+}
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code {
+  font-size: 92%;
+  border: 1px solid #ccc;
+}
+
+code[class] {
+  background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * {
+      background: transparent !important;
+      color: black !important;
+      filter:none !important;
+      -ms-filter: none !important;
+   }
+
+   body {
+      font-size:12pt;
+      max-width:100%;
+   }
+
+   a, a:visited {
+      text-decoration: underline;
+   }
+
+   hr {
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote {
+      padding-right: 1em;
+      page-break-inside: avoid;
+   }
+
+   tr, img {
+      page-break-inside: avoid;
+   }
+
+   img {
+      max-width: 100% !important;
+   }
+
+   @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+   }
+
+   @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+   }
+
+   p, h2, h3 {
+      orphans: 3; widows: 3;
+   }
+
+   h2, h3 {
+      page-break-after: avoid;
+   }
+}
+</style>
+
+
+
+</head>
+
+<body>
+<pre><code class="r">library(coil)
+</code></pre>
+
+<pre><code>## 
+## Attaching package: &#39;coil&#39;
+</code></pre>
+
+<pre><code>## The following object is masked from &#39;package:graphics&#39;:
+## 
+##     frame
+</code></pre>
+
+<h2>Abstract</h2>
+
+<p><strong>coil</strong> is an R package designed for the cleaning, contextualization and assessment of cytochrome c oxidase I DNA barcode data (<a href="https://en.wikipedia.org/wiki/Cytochrome_c_oxidase_subunit_I">COI-5P, or the five prime portion of COI</a>). It contains functions for placing COI-5P barcode sequences into a common reading frame, translating DNA sequences to amino acids and for assessing the likelihood that a given barcode sequence includes an insertion or deletion error. These functions are provided as a single function analysis pipeline and are also available individually for efficient and targeted analysis of barcode data.</p>
+
+<h2>Introduction</h2>
+
+<p>The backbone of the coi5p package is a pair of profile hidden Markov models (PHMMs) that have been trained using a representative sample of the COI-5P sequences available on <a href="http://www.boldsystems.org/index.php">the BOLD database</a>. A 657 nucleotide PHMM receives raw sequences from the user and uses the Viterbi algorithm (implemented via <a href="https://CRAN.R-project.org/package=aphid">the R package aphid</a>) to optimally match the input sequence against the COI-5P nucleotide profile. The second PHMM receives an amino acid sequence that is matched against the COI-5P amino acids profile. The model provides two Boolean output metrics to the user: (a) the sequence contains stop codons (T/F), (b) is the sequence likely to contain an insertion or deletion error (T/F). The insertion or deletion Boolean is based on the log likelihood of the amino acid sequence compared to the PHMM. A default indel likelihood threshold of -358.88 is set but this can be change by the user. Sequences with likelihood values less than this threshold indicate the sequence is likely to contain an indel error, as the amino acid sequence is improbable and therefore indicative of a possible frame shift.</p>
+
+<p>The nucleotide and amino acid PHMMs are interfaced through the translate function, which takes the in frame nucleotide sequence and translates it to amino acids. This function uses <a href="https://cran.r-project.org/package=seqinr">the sequinr package</a> to conduct translation in all instances where <a href="https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi">the genetic code associated with the sample</a> is known. For samples without taxonomic IDs or known genetic codes an additional genetic code is provided. This genetic code is used to conduct censored translation, meaning that translation is conducted normally for codons that do not vary in the amino acid they code for across all known animal mitochondrial genetic codes. The codons that are known to vary in the amino acid they code for across taxa are not translated, rather a placeholder (<code>?</code>) is output to indicate that the amino acid at this location in the sequence cannot be stated with certainty. This functionality allows the <code>indel_check</code> function to assess the likelihood of sequences of unknown taxonomy without being overly stringent in its characterization of sequences as indels due to the appropriation of the wrong translation table.</p>
+
+<p>The translation table employed in censored translation - five codons are translated to placeholder question marks, due to their ambiguity across different mitochondrial translation tables.</p>
+
+<pre><code> Censored translation table:
+            FFLLSSSSYY?*CCWWLLLLPPPPHHQQRRRRII?MTTTTNN?KSS??VVVVAAAADDEEGGGG
+   Base1  = TTTTTTTTTTTTTTTTCCCCCCCCCCCCCCCCAAAAAAAAAAAAAAAAGGGGGGGGGGGGGGGG
+   Base2  = TTTTCCCCAAAAGGGGTTTTCCCCAAAAGGGGTTTTCCCCAAAAGGGGTTTTCCCCAAAAGGGG
+   Base3  = TCAGTCAGTCAGTCAGTCAGTCAGTCAGTCAGTCAGTCAGTCAGTCAGTCAGTCAGTCAGTCAG
+</code></pre>
+
+<h2>The coi5p package</h2>
+
+<h3>Dependencies</h3>
+
+<p>The <code>coil</code> package is dependent on <a href="https://CRAN.R-project.org/package=aphid">the <code>aphid</code> package</a> for comparison of sequences against the COI-5P PHMMs. The <a href="https://CRAN.R-project.org/package=ape"><code>ape</code></a> package is a requirement as well because <code>coil</code> internally converts all DNA and amino acid sequences to the ape &ldquo;DNAbin&rdquo; and &ldquo;AAbin&rdquo; object types to increase computational efficiency. As previously stated, <code>coil</code> is also dependent on <a href="https://cran.r-project.org/package=seqinr">the sequinr package</a> for translation of sequences when <a href="https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi">the genetic code associated with the sample</a> is known.</p>
+
+<h3>Using the package</h3>
+
+<h4>Full analysis pipeline for a single sequence</h4>
+
+<p>An example execution of the complete coi5p analysis pipeline with default options is demonstrated below using an example COI-5P barcode DNA sequence.</p>
+
+<pre><code class="r">output = coi5p_pipe(example_nt_string)
+output
+</code></pre>
+
+<pre><code>## coi5p barcode sequence
+## raw sequence:
+## ctctacttgatttttggtgcatgag...ggacccaattctctatcaacactta
+## framed sequence:
+## ---ctctacttgatttttggtgcat...ggacccaattctctatcaacactta
+## Amino acid sequence:
+## -LYLIFGAWAG?VG?ALSLLIRAEL...LTDRNLNTTFFDPAGGGDPILYQHL
+## The sequence likely does not contain an insertion or deletion.
+## Stop codon present: FALSE, Amino acid PHMM score:-206.22045
+</code></pre>
+
+<p>Executing the entire pipeline yields a coi5p object. Calling the variable name prints the coi5p object&#39;s summary and shows important information about the sequence. </p>
+
+<p>Individual components can be obtained from the object using the dollar sign notation.</p>
+
+<pre><code class="r">#see the available components
+names(output)
+</code></pre>
+
+<pre><code>## [1] &quot;name&quot;         &quot;raw&quot;          &quot;data&quot;         &quot;framed&quot;      
+## [5] &quot;aaSeq&quot;        &quot;aaScore&quot;      &quot;indel_likely&quot; &quot;stop_codons&quot;
+</code></pre>
+
+<pre><code class="r">#retrieve only the amino acid sequence from the object
+output$aaScore
+</code></pre>
+
+<pre><code>## [1] -206.2204
+</code></pre>
+
+<p>By default the pipeline conducts censored translation, avoiding translation of the codons that are known to <a href="https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi">code for different amino acids within different species </a>. If taxonomic information is available for the sample (available ranks: family, order, class, phylum), in most cases you can use the helper function <code>which_trans_table</code> to determine the proper genetic code to use. If the taxonomic group contains species that have different genetic codes, a 0 is returned to indicate that it is a good idea to stick to censored translation.</p>
+
+<pre><code class="r">ex_table_to_use = which_trans_table(&quot;Scyliorhinidae&quot;)
+ex_table_to_use
+</code></pre>
+
+<pre><code>## [1] 2
+</code></pre>
+
+<p>The analysis can then be run with a non-censored translation step. Note below that the amino acid sequence is now devoid of question marks and the PHMM score is lower. </p>
+
+<pre><code class="r">output = coi5p_pipe(example_nt_string, trans_table = ex_table_to_use)
+output
+</code></pre>
+
+<pre><code>## coi5p barcode sequence
+## raw sequence:
+## ctctacttgatttttggtgcatgag...ggacccaattctctatcaacactta
+## framed sequence:
+## ---ctctacttgatttttggtgcat...ggacccaattctctatcaacactta
+## Amino acid sequence:
+## -LYLIFGAWAGMVGMALSLLIRAEL...LTDRNLNTTFFDPAGGGDPILYQHL
+## The sequence likely does not contain an insertion or deletion.
+## Stop codon present: FALSE, Amino acid PHMM score:-103.65363
+</code></pre>
+
+<h4>Calling functions individually</h4>
+
+<p>There are four functions that constitute the coi5p analysis pipeline: <code>coi5p</code>, <code>frame</code>, <code>translate</code> and <code>indel_check</code>. These are available to the user individually, for instances where only part of the analysis pipeline is needed (i.e. if you wish to frame sequences but not waste resources translating them, you could run only <code>coi5p</code> and <code>frame</code>).</p>
+
+<pre><code class="r">  #build the coi5p object
+  dat = coi5p(example_nt_string, name=&quot;example_sequence_1&quot;)
+  #frame the sequence
+  dat = frame(dat)
+  #since we determined the genetic code above, we can use
+  #the proper transaltion table as opposed to conducting 
+  #the default censored translation
+  dat = translate(dat, trans_table = 2)
+  #check to see if an insertion or deletion is likely
+  dat = indel_check(dat)
+  dat
+</code></pre>
+
+<pre><code>## coi5p barcode sequence: example_sequence_1
+## raw sequence:
+## ctctacttgatttttggtgcatgag...ggacccaattctctatcaacactta
+## framed sequence:
+## ---ctctacttgatttttggtgcat...ggacccaattctctatcaacactta
+## Amino acid sequence:
+## -LYLIFGAWAGMVGMALSLLIRAEL...LTDRNLNTTFFDPAGGGDPILYQHL
+## The sequence likely does not contain an insertion or deletion.
+## Stop codon present: FALSE, Amino acid PHMM score:-103.65363
+</code></pre>
+
+<h4>Example of a batch analysis of barcode sequences</h4>
+
+<p>Here we will be working with the example dataframe: <code>example_barcode_data</code>. Although loading and outputting DNA sequence data in R is outside of the scope of the <code>coil</code> package, the supplementary section at the end of this vignette includes an example of how one can load a fasta file into a dataframe with a structure matching that of <code>example_barcode_data</code>. </p>
+
+<p><code>example_barcode_data</code> contains 9 barcode sequences that demonstrate the different abilities of the <code>coil</code> package. Some sequences are longer than the barcode COI-5P barcode region, some are shorter and some have insertion or deletion errors.</p>
+
+<pre><code class="r">#this is the example data 
+dim(example_barcode_data)
+</code></pre>
+
+<pre><code>## [1] 9 5
+</code></pre>
+
+<pre><code class="r">names(example_barcode_data)
+</code></pre>
+
+<pre><code>## [1] &quot;id&quot;           &quot;genetic_code&quot; &quot;taxa&quot;         &quot;sequence&quot;    
+## [5] &quot;notes&quot;
+</code></pre>
+
+<pre><code class="r"># to look at the full dataframe:
+# example_barcode_data
+</code></pre>
+
+<p>The coi5p analysis pipeline can be applied to the a dataframe in a iterative fashion. Here the pipeline is implemented through the use of the <code>lapply</code> function, which lets the unique sequence, id and genetic code of each row in the dataframe be passed into the <code>coi5p_pipe</code> function. </p>
+
+<pre><code class="r">example_barcode_data$coi_output = lapply(1:length(example_barcode_data$id), function(i){
+  coi5p_pipe(example_barcode_data$sequence[i], 
+             name = example_barcode_data$id[i], 
+             trans_table = example_barcode_data$genetic_code[i])
+})
+
+example_barcode_data$coi_output[[1]] #example of the first output
+</code></pre>
+
+<pre><code>## coi5p barcode sequence: ex_1_clean
+## raw sequence:
+## acgctttactttatttttggcatgt...taaccctattctttaccagcatttg
+## framed sequence:
+## acgctttactttatttttggcatgt...taaccctattctttaccagcatttg
+## Amino acid sequence:
+## TLYFIFGMWAGFIGLSMSLLIRMEL...LTDRNFNTSFFDPSGGGNPILYQHL
+## The sequence likely does not contain an insertion or deletion.
+## Stop codon present: FALSE, Amino acid PHMM score:-184.28122
+</code></pre>
+
+<p>The coi5p objects are nested within the dataframe. Individual components can be extracted from the object as needed using the dollar sign notation. Below <code>lapply</code> is used to extract the framed sequence from each coi5p object and turn it into its own column in the dataframe. As we can see from the output below, dashes have been added to the front of the short sequence, if we compare the framed sequences from the long inputs (rows 5 and 6) to their original sequence, we see that coi5p has trimmed the sequence outside of the barcode region.</p>
+
+<pre><code class="r">example_barcode_data$framed_seq = unlist(lapply(example_barcode_data$coi_output, function(x){
+  x$framed
+}))
+
+#has coi5p trimmed characters?
+nchar(example_barcode_data$framed_seq[[5]]) &lt; nchar(example_barcode_data$sequence[[5]])
+</code></pre>
+
+<pre><code>## [1] TRUE
+</code></pre>
+
+<p>The <code>lapply</code> notation used above is rather clunky, so the coi5p package contains a helper function to aid the user in flattening a list of coi5p objects into a dataframe. By default, all of the available object components will be output to the dataframe, but the user can choose a subset of components they wish to extract from the object. Note: this function assumes that the coi5p objects in the list have been put through the same workflow and therefore have a matching set of components. As an example of how you could break it, if you&#39;ve applied the <code>translate</code> function to only one member of the list and not the others then the coi5p objects will have non-matching sets of components and <code>flatten_coi5p</code> will not work properly.</p>
+
+<pre><code class="r">#extract only a single column
+col_df = flatten_coi5p(example_barcode_data$coi_output, keep_cols = &#39;aaSeq&#39;)
+#extract multiple columns
+multi_df = flatten_coi5p(example_barcode_data$coi_output, keep_cols = c(&#39;framed&#39;,&#39;aaSeq&#39;))
+#extract all columns
+full_coi5p_df = flatten_coi5p(example_barcode_data$coi_output)
+#full_coi5p_df
+</code></pre>
+
+<p>The memory requirements of the method demonstrated above are trivial because the example dataframe has only nine rows. If millions of sequences are being processed, then keeping all of the coi5p objects in memory at once may become prohibitive. This will depend on the amount of RAM available on your machine. The average <code>coi5p_pipe</code> output is ~6KB in size, so processing 1 million sequences at once would occupy ~6GB of RAM. If you are trying to limit RAM usage, the following workflow can help keep RAM requirements modest by instantiating only one coi5p object at a time, but as a tradeoff may take slightly more time to execute.</p>
+
+<pre><code class="r">full_coi5p_df = data.frame(matrix(ncol = 7, nrow = 0),stringsAsFactors = FALSE )
+colnames(full_coi5p_df) = c(&quot;name&quot;, &quot;raw&quot;, &quot;framed&quot;, 
+                            &quot;aaSeq&quot;, &quot;aaScore&quot;, &quot;indel_likely&quot;, &quot;stop_codons&quot;)
+
+for(i in 1:length(example_barcode_data$id)){
+    out_data = coi5p_pipe(example_barcode_data$sequence[i], 
+                            name = example_barcode_data$id[i], 
+                            trans_table = example_barcode_data$genetic_code[i])
+  #for extreme memory conservation - could write each line of output to a .csv
+    #instead of binding it to an output dataframe.
+    full_coi5p_df = rbind(full_coi5p_df, flatten_coi5p(list(out_data)))
+}
+</code></pre>
+
+<p>As demonstrated here, the <code>coil</code> package allows for robust cleaning, contextualization and error assessment of novel COI-5P barcode data. The package&#39;s analysis pipeline is designed in a modular fashion, allowing the user to run only the functions required for their given use case. The pipeline is designed with scalability in mind; each sequence is processed individually, allowing for parallelization to optimize analysis speed (i.e. via R&#39;s <code>mclapply</code> function) when computational resources are abundant or for the sequential analysis of sequences when limited memory is available.</p>
+
+<h3>Supplementary Information</h3>
+
+<h4>Loading and manipulating a fasta file</h4>
+
+<p>The example of processing batch DNA barcode data above begins with the data in a clean dataframe. Since barcode data is not always obtained in a tidy format, some preprocessing by the user will likely be required. The following is provided to aid the user in developing a workflow for loading their barcode sequence data into R and constructing a tidy dataframe before beginning sequence analysis.</p>
+
+<p>The example presented below shows how one can load a fasta file containing DNA sequences into R and then convert the sequence and header data into a tidy dataframe object. More information on the <code>read.fasta</code> function can be found in <a href="https://cran.r-project.org/package=seqinr">the seqinr documentation</a>. </p>
+
+<p>Information found in the header lines of fasta files varies, so the reader will likely need to alter this code for novel data sources. In this example, the header contains four fields (id, genetic code, taxa and notes) separated by a pipe character (<code>|</code>). The code below turns this fasta file into a dataframe that matches the <code>example_barcode_data</code> file used above.</p>
+
+<pre><code class="r">library(seqinr)
+</code></pre>
+
+<pre><code>## 
+## Attaching package: &#39;seqinr&#39;
+</code></pre>
+
+<pre><code>## The following object is masked from &#39;package:coil&#39;:
+## 
+##     translate
+</code></pre>
+
+<pre><code class="r"># load the example fasta file included with coil
+# included in the file&#39;s header line:
+# the name of the sample, its genetic code, taxonomic designation and some notes
+ex_fasta_file = system.file(&quot;extdata/example_barcode_data.fasta&quot;, package = &quot;coil&quot;)
+
+#read in the example fasta file using seqinr
+ex_data = seqinr::read.fasta(ex_fasta_file, as.string = TRUE)
+
+#here is what the output from read.fasta looks like
+#head(ex_data)
+
+#parse the data in the header line by splitting the name on the | character
+parsed_names_data = lapply(1:length(ex_data), function(i){
+  unlist(strsplit(names(ex_data)[[i]],&quot;\\|&quot;))
+})
+
+# subset the components of the header line and build these and the sequence 
+# into a dataframe matching the style used in the coi5p batch example
+example_barcode_data_from_scratch = data.frame(
+  id = sapply(parsed_names_data, function(x) x[[1]]),
+  genetic_code = sapply(parsed_names_data, function(x) x[[2]]),
+  taxa = sapply(parsed_names_data, function(x) x[[3]]),
+  sequence = unname(unlist(ex_data)),
+  notes = sapply(parsed_names_data, function(x) x[[4]])
+)
+
+#head(example_barcode_data_from_scratch)
+</code></pre>
+
+</body>
+
+</html>
