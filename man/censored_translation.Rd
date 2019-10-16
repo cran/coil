@@ -9,9 +9,9 @@ censored_translation(dna_str, reading_frame = 1)
 \arguments{
 \item{dna_str}{The DNA string to be translated.}
 
-\item{reading_frame}{reading frame = 1 means the first bp in the string is the start of the
-first codon, can pass 1, 2 or 3. For 2 and 3 the first 1 and 2 bp will be
-dropped from translation respectively.}
+\item{reading_frame}{Set the reading frame of the sequence. reading_frame = 1 (default)
+means the first bp in the string is the start of the first codon, can pass either 1, 2 or 3.
+i.e. reading_frame = 2 indicates that the second bp in the string is the start of the first codon.}
 }
 \description{
 Translate a DNA sequence using the censored translation table,
@@ -20,10 +20,9 @@ mitochondrial genetic codes across the animal kingdom and does not
 translate those for which the amino acid varies,
 but rather outputs a ? in the string.
 }
-\details{
-Censored translation table:
-     AA  = FFLLSSSSYY?*CCWWLLLLPPPPHHQQRRRRII?MTTTTNN?KSS??VVVVAAAADDEEGGGG
-  Base1  = TTTTTTTTTTTTTTTTCCCCCCCCCCCCCCCCAAAAAAAAAAAAAAAAGGGGGGGGGGGGGGGG
-  Base2  = TTTTCCCCAAAAGGGGTTTTCCCCAAAAGGGGTTTTCCCCAAAAGGGGTTTTCCCCAAAAGGGG
-  Base3  = TCAGTCAGTCAGTCAGTCAGTCAGTCAGTCAGTCAGTCAGTCAGTCAGTCAGTCAGTCAGTCAG
+\examples{
+#translate a string of DNA:
+censored_translation(example_nt_string)
+#manually override the reading frame:
+censored_translation(example_nt_string, reading_frame = 2)
 }

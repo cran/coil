@@ -10,9 +10,9 @@ translate(x, ...)
 \method{translate}{coi5p}(x, ..., trans_table = 0, frame_offset = 0)
 }
 \arguments{
-\item{x}{a coi5p class object for which frame() has been run.}
+\item{x}{A coi5p class object for which frame() has been run.}
 
-\item{...}{additional arguments to be passed between methods.}
+\item{...}{Additional arguments to be passed between methods.}
 
 \item{trans_table}{The translation table to use for translating from nucleotides to amino acids.
 Default is 0, which indicates that censored translation should be performed. If the taxonomy
@@ -21,13 +21,18 @@ of the sample is known, use the function which_trans_table() to determine the tr
 \item{frame_offset}{The offset to the reading frame to be applied for translation. By default the offset
 is zero, so the first character in the framed sequence is considered the first nucleotide of the first codon.
 Passing frame_offset = 1 would offset the sequence by one and therefore make the second character in the
- framed sequence the the first nucleotide of the first codon.}
+framed sequence the the first nucleotide of the first codon.}
 }
 \value{
-an object of class \code{"coi5p"}
+An object of class \code{"coi5p"}
 }
 \description{
 Translate a coi5p sequence.
+}
+\details{
+The translate allows for the translation of framed sequences from nucleotides to amino acids, both
+in instances when the correct genetic code corresponding to a sequence is known, and in instances when phylogenetic
+information is unavailable or unreliable.
 }
 \examples{
 #previously run functions:
