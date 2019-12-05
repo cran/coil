@@ -1,4 +1,4 @@
-## ----setup, echo = FALSE-------------------------------------------------
+## ----loadlib, echo=TRUE, results='hide', message=FALSE, warning=FALSE----
 library(coil)
 
 ## ------------------------------------------------------------------------
@@ -67,8 +67,8 @@ full_coi5p_df = flatten_coi5p(example_barcode_data$coi_output)
 #full_coi5p_df
 
 ## ------------------------------------------------------------------------
-full_coi5p_df = data.frame(matrix(ncol = 7, nrow = 0),stringsAsFactors = FALSE )
-colnames(full_coi5p_df) = c("name", "raw", "framed", 
+full_coi5p_df = data.frame(matrix(ncol = 9, nrow = 0),stringsAsFactors = FALSE )
+colnames(full_coi5p_df) = c("name", "raw", "framed", "was_trimmed", "align_report",
                             "aaSeq", "aaScore", "indel_likely", "stop_codons")
 
 for(i in 1:length(example_barcode_data$id)){

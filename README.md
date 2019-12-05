@@ -1,8 +1,11 @@
-# coil 
-An R package for contextualization and evaluation of COI-5P barcode data
+
+An R package for pre-processing and error evaluation of COI-5P barcode data
+---------------------------------------------------------------------------
 [![Build Status](https://travis-ci.com/CNuge/coil.svg?branch=master)](https://travis-ci.com/CNuge/coil)
 [![codecov](https://codecov.io/gh/CNuge/coil/branch/master/graph/badge.svg)](https://codecov.io/gh/CNuge/coil)
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/coil)](https://CRAN.R-project.org/package=coil)
+[![](https://cranlogs.r-pkg.org/badges/grand-total/coil)](https://CRAN.R-project.org/package=coil)
 --------------------------------------------------------------------------
 
 **coil** is an R package designed for the cleaning, contextualization and assessment of cytochrome c oxidase I DNA barcode data ([COI-5P, or the five prime portion of COI](https://en.wikipedia.org/wiki/Cytochrome_c_oxidase_subunit_I)). It contains functions for placing COI-5P barcode sequences into a common reading frame, translating DNA sequences to amino acids and for assessing the likelihood that a given barcode sequence includes an insertion or deletion error. These functions are provided as a single function analysis pipeline and are also available individually for efficient and targeted analysis of barcode data.
@@ -32,7 +35,7 @@ vignette("coil-vignette")
 
 ## How to use it
 
-Below is a brief demonstration to get the user started, please consult the package vignette for a more detailed explanation of `coil`'s functionality.
+Below is a brief demonstration to get the user started, please consult [the package's vignette](https://github.com/CNuge/coil/blob/master/vignettes/coil-vignette.Rmd) for a more detailed explanation of `coil`'s functionality.
 
 The package is built around the custom `coi5p` object, which takes a COI-5P DNA barcode sequence as input. The package contains functions for: 
 
@@ -71,7 +74,6 @@ output = coi5p_pipe(example_nt_string)
 Calling the variable name prints the coi5p object's summary and shows all of the important information, including: the original raw sequence, the sequence set in reading frame, the amino acid sequence and the summary stats regarding the likelihood of the sequence containing an error.
 ```
 output 
-#calling output will return the following:
 #coi5p barcode sequence
 #raw sequence:
 #ctctacttgatttttggtgcatgag...ggacccaattctctatcaacactta
@@ -79,8 +81,10 @@ output
 #---ctctacttgatttttggtgcat...ggacccaattctctatcaacactta
 #Amino acid sequence:
 #-LYLIFGAWAG?VG?ALSLLIRAEL...LTDRNLNTTFFDPAGGGDPILYQHL
-#The sequence likely does not contain an insertion or deletion.
+#Raw sequence was trimmed: FALSE
 #Stop codon present: FALSE, Amino acid PHMM score:-206.22045
+#The sequence likely does not contain an insertion or deletion.
+#Base pair 1 of the raw sequence is base pair 4 of the COI-5P region.
 ```
 The coi5p object has the following components that can be extracted by the user using the dollar sign notation.
 ```
@@ -90,7 +94,14 @@ output$framed       #the DNA sequence set in reading frame
 output$aaSeq        #the amino acid sequence
 output$aaScore      #the log likelihood score of the amino acid sequence - see vignette for details
 output$indel_likely #a boolean indicating whether the sequence should be double checked for indel errors
-output$stop_codons  #a boolean indicating whether the amino acid sequence contains stop codons.
-output$data         #contains the generated nucleotide and amino acid hidden state paths.
+output$stop_codons  #a boolean indicating whether the amino acid sequence contains stop codons
+output$data         #contains the generated nucleotide and amino acid hidden state paths
+output$was_trimmed  #a boolean indicating if part of raw DNA sequence was trimmed due to not matching the COI-5P region
+output$align_report #a report indicating the first positional match between the raw sequence and the COI-5P region
 ```
-Most use cases will involve the analysis of multiple sequences. Please consult the package's vignette for a suggested workflow for batch analysis and demonstration of how the batch analysis helper function can be used to build dataframes out of multiple coi5p objects.
+Most use cases will involve the analysis of multiple sequences. Please consult [the package's vignette](https://github.com/CNuge/coil/blob/master/vignettes/coil-vignette.Rmd) for a suggested workflow for batch analysis and demonstration of how the batch analysis helper function can be used to build dataframes out of multiple coi5p objects.
+
+## Acknowledgements
+
+Funding for the development of this software was provided by grants in Bioinformatics and Computational Biology from the Government of Canada through Genome Canada and Ontario Genomics and from the Ontario Research Fund. Funders played no role in the study design or preparation of this software. Thank you to Sarah J. Adamowicz and Sujeevan Ratnasingham who contributed to the conceptualization of this software. Thank you to Tyler A. Elliot for aiding in the acquisition and curation of data. Thank you to [Samantha Majoros](https://github.com/S-Majoros) for aiding in the initial testing of this package. Thank you to Suz Bateson for designing the logo for the coil package.
+

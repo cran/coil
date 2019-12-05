@@ -201,13 +201,7 @@ hr {
 </head>
 
 <body>
-<pre><code>## 
-## Attaching package: &#39;coil&#39;
-</code></pre>
-
-<pre><code>## The following object is masked from &#39;package:graphics&#39;:
-## 
-##     frame
+<pre><code class="r">library(coil)
 </code></pre>
 
 <h2>Abstract</h2>
@@ -252,8 +246,10 @@ output
 ## ---ctctacttgatttttggtgcat...ggacccaattctctatcaacactta
 ## Amino acid sequence:
 ## -LYLIFGAWAG?VG?ALSLLIRAEL...LTDRNLNTTFFDPAGGGDPILYQHL
-## The sequence likely does not contain an insertion or deletion.
+## Raw sequence was trimmed: FALSE
 ## Stop codon present: FALSE, Amino acid PHMM score:-206.22045
+## The sequence likely does not contain an insertion or deletion.
+## Base pair 1 of the raw sequence is base pair 4 of the COI-5P region.
 </code></pre>
 
 <p>Executing the entire pipeline yields a coi5p object. Calling the variable name prints the coi5p object&#39;s summary and shows important information about the sequence. </p>
@@ -264,8 +260,9 @@ output
 names(output)
 </code></pre>
 
-<pre><code>## [1] &quot;name&quot;         &quot;raw&quot;          &quot;data&quot;         &quot;framed&quot;      
-## [5] &quot;aaSeq&quot;        &quot;aaScore&quot;      &quot;indel_likely&quot; &quot;stop_codons&quot;
+<pre><code>##  [1] &quot;name&quot;         &quot;raw&quot;          &quot;data&quot;         &quot;framed&quot;      
+##  [5] &quot;was_trimmed&quot;  &quot;align_report&quot; &quot;aaSeq&quot;        &quot;aaScore&quot;     
+##  [9] &quot;indel_likely&quot; &quot;stop_codons&quot;
 </code></pre>
 
 <pre><code class="r">#retrieve only the amino acid sequence from the object
@@ -297,8 +294,10 @@ output
 ## ---ctctacttgatttttggtgcat...ggacccaattctctatcaacactta
 ## Amino acid sequence:
 ## -LYLIFGAWAGMVGMALSLLIRAEL...LTDRNLNTTFFDPAGGGDPILYQHL
-## The sequence likely does not contain an insertion or deletion.
+## Raw sequence was trimmed: FALSE
 ## Stop codon present: FALSE, Amino acid PHMM score:-103.65363
+## The sequence likely does not contain an insertion or deletion.
+## Base pair 1 of the raw sequence is base pair 4 of the COI-5P region.
 </code></pre>
 
 <h4>Calling functions individually</h4>
@@ -325,8 +324,10 @@ output
 ## ---ctctacttgatttttggtgcat...ggacccaattctctatcaacactta
 ## Amino acid sequence:
 ## -LYLIFGAWAGMVGMALSLLIRAEL...LTDRNLNTTFFDPAGGGDPILYQHL
-## The sequence likely does not contain an insertion or deletion.
+## Raw sequence was trimmed: FALSE
 ## Stop codon present: FALSE, Amino acid PHMM score:-103.65363
+## The sequence likely does not contain an insertion or deletion.
+## Base pair 1 of the raw sequence is base pair 4 of the COI-5P region.
 </code></pre>
 
 <h4>Example of a batch analysis of barcode sequences</h4>
@@ -371,8 +372,10 @@ example_barcode_data$coi_output[[1]] #example of the first output
 ## acgctttactttatttttggcatgt...taaccctattctttaccagcatttg
 ## Amino acid sequence:
 ## TLYFIFGMWAGFIGLSMSLLIRMEL...LTDRNFNTSFFDPSGGGNPILYQHL
-## The sequence likely does not contain an insertion or deletion.
+## Raw sequence was trimmed: FALSE
 ## Stop codon present: FALSE, Amino acid PHMM score:-184.28122
+## The sequence likely does not contain an insertion or deletion.
+## Base pair 1 of the raw sequence is base pair 1 of the COI-5P region.
 </code></pre>
 
 <p>The coi5p objects are nested within the dataframe. Individual components can be extracted from the object as needed using the dollar sign notation. Below <code>lapply</code> is used to extract the framed sequence from each coi5p object and turn it into its own column in the dataframe. As we can see from the output below, dashes have been added to the front of the short sequence, if we compare the framed sequences from the long inputs (rows 5 and 6) to their original sequence, we see that coi5p has trimmed the sequence outside of the barcode region.</p>
@@ -401,8 +404,8 @@ full_coi5p_df = flatten_coi5p(example_barcode_data$coi_output)
 
 <p>The memory requirements of the method demonstrated above are trivial because the example dataframe has only nine rows. If millions of sequences are being processed, then keeping all of the coi5p objects in memory at once may become prohibitive. This will depend on the amount of RAM available on your machine. The average <code>coi5p_pipe</code> output is ~6KB in size, so processing 1 million sequences at once would occupy ~6GB of RAM. If you are trying to limit RAM usage, the following workflow can help keep RAM requirements modest by instantiating only one coi5p object at a time, but as a tradeoff may take slightly more time to execute.</p>
 
-<pre><code class="r">full_coi5p_df = data.frame(matrix(ncol = 7, nrow = 0),stringsAsFactors = FALSE )
-colnames(full_coi5p_df) = c(&quot;name&quot;, &quot;raw&quot;, &quot;framed&quot;, 
+<pre><code class="r">full_coi5p_df = data.frame(matrix(ncol = 9, nrow = 0),stringsAsFactors = FALSE )
+colnames(full_coi5p_df) = c(&quot;name&quot;, &quot;raw&quot;, &quot;framed&quot;, &quot;was_trimmed&quot;, &quot;align_report&quot;,
                             &quot;aaSeq&quot;, &quot;aaScore&quot;, &quot;indel_likely&quot;, &quot;stop_codons&quot;)
 
 for(i in 1:length(example_barcode_data$id)){
