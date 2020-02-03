@@ -1,4 +1,5 @@
 ## ----loadlib, echo=TRUE, results='hide', message=FALSE, warning=FALSE----
+#install.packages('coil')
 library(coil)
 
 ## ------------------------------------------------------------------------
@@ -21,11 +22,11 @@ output
 
 ## ------------------------------------------------------------------------
   #build the coi5p object
-  dat = coi5p(example_nt_string, name="example_sequence_1")
+  dat = coi5p(example_nt_string, name = "example_sequence_1")
   #frame the sequence
   dat = frame(dat)
   #since we determined the genetic code above, we can use
-  #the proper transaltion table as opposed to conducting 
+  #the proper translation table as opposed to conducting 
   #the default censored translation
   dat = translate(dat, trans_table = 2)
   #check to see if an insertion or deletion is likely
@@ -33,7 +34,7 @@ output
   dat
 
 ## ------------------------------------------------------------------------
-#this is the example data 
+#this is the example data set
 dim(example_barcode_data)
 names(example_barcode_data)
 # to look at the full dataframe:
@@ -50,8 +51,9 @@ example_barcode_data$coi_output = lapply(1:length(example_barcode_data$id), func
 example_barcode_data$coi_output[[1]] #example of the first output
 
 ## ------------------------------------------------------------------------
-example_barcode_data$framed_seq = unlist(lapply(example_barcode_data$coi_output, function(x){
-  x$framed
+example_barcode_data$framed_seq = unlist(lapply(example_barcode_data$coi_output, 
+  function(x){
+    x$framed
 }))
 
 #has coi5p trimmed characters?
@@ -81,6 +83,63 @@ for(i in 1:length(example_barcode_data$id)){
 }
 
 ## ------------------------------------------------------------------------
+dna_vector = strsplit(example_nt_string, "")[[1]]
+#three dashes added to the sequence because the example_nt_string starts at codon 2
+dna_vector = c("-", "-", "-", dna_vector) 
+dna_336_subset = paste(dna_vector[336:635], collapse="")
+
+#deleted a base pair from the sequence, simulating an indel error
+dna_336_subset_indel = paste(c(dna_vector[336:358]  ,dna_vector[360:635]), collapse="")
+
+
+## ------------------------------------------------------------------------
+false_pos = coi5p_pipe(dna_336_subset)
+false_pos$stop_codons
+
+## ------------------------------------------------------------------------
+#want to start at position 337 and cover 300bp
+nt_start = 337
+nt_end = 636
+
+#Get the corresponding amino acid start and end points
+#the start and end positions are different than the nucleotide numbers, 
+#because 3bp make one amino acid
+# ceiling is used because 337/3 = 112.333, i.e. the first base pair of amino acid number 113
+aa_start = ceiling(nt_start/3) 
+aa_end = ceiling(nt_end/3)
+ 
+meta_nt_phmm = subsetPHMM(nt_coi_PHMM, start = nt_start, end = nt_end)
+meta_aa_phmm = subsetPHMM(aa_coi_PHMM, start = aa_start, end = aa_end)
+
+#Addendum to note IMPORTANT NOTE:
+#This function can be used to check your start is the first bp of a codon:
+first_bp_of_codon = function(x){
+ if(((x-1)%%3) == 0){
+   return(TRUE)
+ }
+ return(FALSE)
+}
+
+first_bp_of_codon(nt_start)
+
+## ------------------------------------------------------------------------
+#pass the dna sequence fragment with no error, and also the nt and aa PHMMs we just constructed
+subset_no_error_output = coi5p_pipe(dna_336_subset, 
+                                    nt_PHMM = meta_nt_phmm, 
+                                    aa_PHMM = meta_aa_phmm)
+#is there evidence of stop codons:
+subset_no_error_output$stop_codons
+#see the full output
+subset_no_error_output
+
+## ------------------------------------------------------------------------
+subset_has_error_outpt = coi5p_pipe(dna_336_subset_indel, 
+                                    nt_PHMM = meta_nt_phmm, 
+                                    aa_PHMM = meta_aa_phmm)
+subset_has_error_outpt$stop_codons
+subset_has_error_outpt
+
+## ------------------------------------------------------------------------
 library(seqinr)
 # load the example fasta file included with coil
 # included in the file's header line:
@@ -108,5 +167,6 @@ example_barcode_data_from_scratch = data.frame(
   notes = sapply(parsed_names_data, function(x) x[[4]])
 )
 
+#uncomment the following line to see result
 #head(example_barcode_data_from_scratch)
 

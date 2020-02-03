@@ -1,10 +1,10 @@
-
+# coil 
 An R package for pre-processing and error evaluation of COI-5P barcode data
 ---------------------------------------------------------------------------
 [![Build Status](https://travis-ci.com/CNuge/coil.svg?branch=master)](https://travis-ci.com/CNuge/coil)
 [![codecov](https://codecov.io/gh/CNuge/coil/branch/master/graph/badge.svg)](https://codecov.io/gh/CNuge/coil)
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)
-[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/coil)](https://CRAN.R-project.org/package=coil)
+[![CRAN_Status_Badge](https://r-pkg.org/badges/version/coil)](https://CRAN.R-project.org/package=coil)
 [![](https://cranlogs.r-pkg.org/badges/grand-total/coil)](https://CRAN.R-project.org/package=coil)
 --------------------------------------------------------------------------
 
@@ -60,7 +60,7 @@ dat = translate(dat)
 #can be used to look up the proper translation table.
 which_trans_table("Scyliorhinidae")
 
-#step 3a: the proper transaltion table can be passed to the translation function
+#step 3a: the proper translation table can be passed to the translation function
 dat = translate(dat, trans_table = 2)
 
 #step 4: check to see if an insertion or deletion is likely
