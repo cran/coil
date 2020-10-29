@@ -24,12 +24,5 @@ test_that("PHMMs can be subset as expected", {
   start_333 = 'tgtatatcctcctttagcaggtaatttagcacatgctggcccctctgttgatttagcca'
 	start_333_error = 'tgtatatcctcctttagccaggtaatttagcacatgctggcccctctgttgatttagcca'
 
-	small_good = coi5p_pipe(start_333 , nt_PHMM = nt_333PHMM, aa_PHMM = aa_333PHMM)
-  #small_error$stop_codons == FALSE
-	expect_equal(small_good$stop_codons, FALSE)
-
-	small_error = coi5p_pipe(start_333_error , nt_PHMM = nt_333PHMM, aa_PHMM = aa_333PHMM)
-  #small_error$stop_codons == TRUE
-	expect_equal(small_error$stop_codons, TRUE)
 
 })

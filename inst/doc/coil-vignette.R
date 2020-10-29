@@ -1,26 +1,26 @@
-## ----loadlib, echo=TRUE, results='hide', message=FALSE, warning=FALSE----
+## ----loadlib, echo=TRUE, results='hide', message=FALSE, warning=FALSE---------
 #install.packages('coil')
 library(coil)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 output = coi5p_pipe(example_nt_string)
 output
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 #see the available components
 names(output)
 #retrieve only the amino acid sequence from the object
 output$aaScore
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 ex_table_to_use = which_trans_table("Scyliorhinidae")
 ex_table_to_use
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 output = coi5p_pipe(example_nt_string, trans_table = ex_table_to_use)
 output
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
   #build the coi5p object
   dat = coi5p(example_nt_string, name = "example_sequence_1")
   #frame the sequence
@@ -33,14 +33,14 @@ output
   dat = indel_check(dat)
   dat
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 #this is the example data set
 dim(example_barcode_data)
 names(example_barcode_data)
 # to look at the full dataframe:
 # example_barcode_data
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 
 example_barcode_data$coi_output = lapply(1:length(example_barcode_data$id), function(i){
   coi5p_pipe(example_barcode_data$sequence[i], 
@@ -50,7 +50,7 @@ example_barcode_data$coi_output = lapply(1:length(example_barcode_data$id), func
 
 example_barcode_data$coi_output[[1]] #example of the first output
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 example_barcode_data$framed_seq = unlist(lapply(example_barcode_data$coi_output, 
   function(x){
     x$framed
@@ -59,7 +59,7 @@ example_barcode_data$framed_seq = unlist(lapply(example_barcode_data$coi_output,
 #has coi5p trimmed characters?
 nchar(example_barcode_data$framed_seq[[5]]) < nchar(example_barcode_data$sequence[[5]])
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 #extract only a single column
 col_df = flatten_coi5p(example_barcode_data$coi_output, keep_cols = 'aaSeq')
 #extract multiple columns
@@ -68,7 +68,7 @@ multi_df = flatten_coi5p(example_barcode_data$coi_output, keep_cols = c('framed'
 full_coi5p_df = flatten_coi5p(example_barcode_data$coi_output)
 #full_coi5p_df
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 full_coi5p_df = data.frame(matrix(ncol = 9, nrow = 0),stringsAsFactors = FALSE )
 colnames(full_coi5p_df) = c("name", "raw", "framed", "was_trimmed", "align_report",
                             "aaSeq", "aaScore", "indel_likely", "stop_codons")
@@ -82,7 +82,7 @@ for(i in 1:length(example_barcode_data$id)){
 	full_coi5p_df = rbind(full_coi5p_df, flatten_coi5p(list(out_data)))
 }
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 dna_vector = strsplit(example_nt_string, "")[[1]]
 #three dashes added to the sequence because the example_nt_string starts at codon 2
 dna_vector = c("-", "-", "-", dna_vector) 
@@ -92,11 +92,11 @@ dna_336_subset = paste(dna_vector[336:635], collapse="")
 dna_336_subset_indel = paste(c(dna_vector[336:358]  ,dna_vector[360:635]), collapse="")
 
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 false_pos = coi5p_pipe(dna_336_subset)
 false_pos$stop_codons
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 #want to start at position 337 and cover 300bp
 nt_start = 337
 nt_end = 636
@@ -104,7 +104,7 @@ nt_end = 636
 #Get the corresponding amino acid start and end points
 #the start and end positions are different than the nucleotide numbers, 
 #because 3bp make one amino acid
-# ceiling is used because 337/3 = 112.333, i.e. the first base pair of amino acid number 113
+# ceiling is used because 337/3 = 112.333, i.e. the first base pair of amino acid 113
 aa_start = ceiling(nt_start/3) 
 aa_end = ceiling(nt_end/3)
  
@@ -122,24 +122,23 @@ first_bp_of_codon = function(x){
 
 first_bp_of_codon(nt_start)
 
-## ------------------------------------------------------------------------
-#pass the dna sequence fragment with no error, and also the nt and aa PHMMs we just constructed
+## -----------------------------------------------------------------------------
+#pass the dna sequence fragment with no error, and also subset the nt and aa PHMMs
 subset_no_error_output = coi5p_pipe(dna_336_subset, 
                                     nt_PHMM = meta_nt_phmm, 
                                     aa_PHMM = meta_aa_phmm)
-#is there evidence of stop codons:
-subset_no_error_output$stop_codons
+
 #see the full output
 subset_no_error_output
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 subset_has_error_outpt = coi5p_pipe(dna_336_subset_indel, 
                                     nt_PHMM = meta_nt_phmm, 
                                     aa_PHMM = meta_aa_phmm)
 subset_has_error_outpt$stop_codons
 subset_has_error_outpt
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 library(seqinr)
 # load the example fasta file included with coil
 # included in the file's header line:

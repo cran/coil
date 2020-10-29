@@ -1,4 +1,4 @@
-# coil 
+# coil
 An R package for pre-processing and error evaluation of COI-5P barcode data
 ---------------------------------------------------------------------------
 [![Build Status](https://travis-ci.com/CNuge/coil.svg?branch=master)](https://travis-ci.com/CNuge/coil)
@@ -100,6 +100,12 @@ output$was_trimmed  #a boolean indicating if part of raw DNA sequence was trimme
 output$align_report #a report indicating the first positional match between the raw sequence and the COI-5P region
 ```
 Most use cases will involve the analysis of multiple sequences. Please consult [the package's vignette](https://github.com/CNuge/coil/blob/master/vignettes/coil-vignette.Rmd) for a suggested workflow for batch analysis and demonstration of how the batch analysis helper function can be used to build dataframes out of multiple coi5p objects.
+
+## Citation
+
+If you use coil in your research, please consider citing the following publication:
+
+Nugent, C. M., Elliott, T. A., Ratnasingham, S., & Adamowicz, S. J. (2020) coil: an R package for cytochrome c oxidase I (COI) DNA barcode data cleaning, translation, and error evaluation. Genome, 2020, 63(6): 291-305, https://doi.org/10.1139/gen-2019-0206
 
 ## Acknowledgements
 
