@@ -1,4 +1,4 @@
-95f62fc9750f8dcc4fadadb9e04f5073 *DESCRIPTION
+c665d1905612c442b8268bba0af34263 *DESCRIPTION
 76b30ac69df3282da30f279a3df36805 *NAMESPACE
 997eed0813f155a9c7578c11584da785 *R/coi5p.r
 27a305de8f37ac7d835db7ba9c70cd25 *R/coil.r
@@ -14,7 +14,7 @@ d178e462d0b87ed51aa0463d5f7b07f6 *R/translation.r
 ef3550853445be1090ee86feb2f85022 *data/example_barcode_data.RData
 19833e60e0851360d44b7b83d6cde6f4 *inst/doc/coil-vignette.R
 5ddd1427f81e0baddf0e682ddc983a4a *inst/doc/coil-vignette.Rmd
-ed528e523af9acb2fb72bde01f5368e0 *inst/doc/coil-vignette.html
+344ddd958a4b092a96a2b3213dc40c97 *inst/doc/coil-vignette.html
 a622c4a8593ec2840d88a56525d4261b *inst/extdata/example_barcode_data.fasta
 e9af4342a0756474d2ac530e837b61c3 *man/aa_coi_PHMM.Rd
 44c68a77058b139fe0bb67732e77c7f5 *man/censored_translation.Rd

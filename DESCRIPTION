@@ -1,7 +1,7 @@
 Package: coil
 Type: Package
 Title: Contextualization and Evaluation of COI-5P Barcode Data
-Version: 1.2.2
+Version: 1.2.3
 Author: Cameron M. Nugent
 Maintainer: Cameron M. Nugent <nugentc@uoguelph.ca>
 Description: Designed for the cleaning, contextualization and assessment of cytochrome c 
@@ -23,6 +23,6 @@ Suggests: knitr, rmarkdown, testthat
 VignetteBuilder: knitr
 RoxygenNote: 7.1.1
 NeedsCompilation: no
-Packaged: 2020-10-29 18:13:57 UTC; cnuge
+Packaged: 2021-04-20 17:57:15 UTC; cnuge
 Repository: CRAN
-Date/Publication: 2020-10-29 18:50:03 UTC
+Date/Publication: 2021-04-20 18:20:03 UTC
